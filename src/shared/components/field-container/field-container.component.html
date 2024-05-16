@@ -1,0 +1,67 @@
+<div class="field-container">
+    @if (keyTradLabel(); as keyTradLabel) {
+        <mat-label>{{ keyTradLabel | translate }}</mat-label>
+    }
+    <mat-form-field
+        [formGroup]="formGroup()"
+        [appearance]="isInTable() ? 'fill' : 'outline'"
+        [ngClass]="{ removeStyle: readonly() && isInTable() }"
+    >
+        @switch (field().type) {
+            @case (FieldContainerType.INPUT) {
+                <input
+                    matInput
+                    [id]="field() + '_' + fieldIndex()"
+                    [name]="field() + '_' + fieldIndex()"
+                    [attr.data-test]="field() + '_' + fieldIndex()"
+                    [formControlName]="field().formControlName"
+                    [errorStateMatcher]="errorStateMatcher"
+                    [readonly]="readonly()"
+                />
+            }
+            @default {}
+        }
+        @if (formGroup().getHintMessage(field().formControlName); as message) {
+            <mat-hint>
+                <span
+                    [translate]="message.translate"
+                    [translateParams]="
+                        message?.translateParams | translateParams
+                    "
+                ></span>
+            </mat-hint>
+        }
+    </mat-form-field>
+    @if (
+        formGroup().touched &&
+            formGroup().getErrorMessages(field().formControlName);
+        as errors
+    ) {
+        @if (formGroup().controls[field().formControlName].invalid) {
+            <mat-error>
+                @if (errors.length) {
+                    @for (error of errors; track $index) {
+                        <span
+                            [translate]="error.translate"
+                            [translateParams]="
+                                error?.translateParams | translateParams
+                            "
+                        ></span>
+                    }
+                } @else {
+                    @if (
+                        formGroup().controls[field().formControlName].errors?.[
+                            'required'
+                        ]
+                    ) {
+                        <span
+                            [translate]="'ERRORS.MANDATORY_FIELD'"
+                        ></span>
+                    } @else {
+                        <span [translate]="'ERRORS.GENERIC'"></span>
+                    }
+                }
+            </mat-error>
+        }
+    }
+</div>

@@ -1,0 +1,15 @@
+:host {
+    .app-section {
+        padding: 10px 24px;
+        border-radius: 8px;
+        background: var(--white);
+        .header {
+            flex: 1 1 auto;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+    }
+}

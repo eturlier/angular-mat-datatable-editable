@@ -1,0 +1,15 @@
+{
+        "COLUMNS": {
+            "ID": "Id",
+            "CODE": "Code",
+            "LABEL": "Label"
+        },
+        "ERRORS": {
+                "PATTERN": "Problème de pattern",
+                "MANDATORY_FIELD": "Champ obligatoire",
+                "GENERIC": "Le champs est invalide"
+        },
+        "TABLE": {
+                "NO_RESULT": "Aucun résultat"
+        }
+}

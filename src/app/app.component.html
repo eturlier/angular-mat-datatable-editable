@@ -1,0 +1,9 @@
+<app-mat-datatable-editable
+    [data]="entitiesList$()"
+    [columns]="columns"
+    isFormDatatable
+    canAddRow
+    (updateRow)="updateEntity($event)"
+    (deleteRow)="deleteEntity($event)"
+    (addRow)="addEntity()"
+></app-mat-datatable-editable>
