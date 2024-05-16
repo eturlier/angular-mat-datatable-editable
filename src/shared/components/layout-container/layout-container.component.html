@@ -1,0 +1,24 @@
+<section class="app-section">
+  <div class="header">
+    <ng-content select="[header]"></ng-content>
+    @for (btn of buttons(); track $index) { @if (btn.visible ? btn.visible() :
+    true) {
+    <button
+      mat-flat-button
+      [id]="btn.name + '-btn-' + $index"
+      [attr.data-test]="btn.name + '-btn-' + $index"
+      [disabled]="btn.disabled"
+      [class]="btn.class"
+      (click)="doCallbackAction(btn)"
+    >
+      @if (btn.icon) {
+      <mat-icon [fontIcon]="btn.icon" [style]="'color:' + btn.color"></mat-icon>
+      }
+      {{ btn.code_trad_label ? (btn.code_trad_label | translate) : "" }}
+    </button>
+    } }
+  </div>
+  <div class="content">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</section>
